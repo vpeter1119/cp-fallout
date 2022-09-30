@@ -1,6 +1,11 @@
 export class Character {
     id: number;
-    name: string;
+    general: {
+        name: string,
+        age: number,
+        caps: number,
+        radiation: number
+    };
     attributes: {
         strength: number,
         perception: number,

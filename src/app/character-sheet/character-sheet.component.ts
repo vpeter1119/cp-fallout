@@ -40,6 +40,11 @@ export class CharacterSheetComponent implements OnInit {
     this.displayRollResult(label, roll);
   }
 
+  onRollDamage(label: string, dice: number, modifier: number) {
+    const roll = this._dice.rollDamage(dice, modifier);
+    this.displayRollResult(label, roll);
+  }
+
   displayRollResult(label: string, result: string) {
     this._snackBar.open(`Roll result for ${label}: ${result}`, 'Close');
   }
@@ -56,7 +61,15 @@ export class CharacterSheetComponent implements OnInit {
   }
 
   onReset() {
-    this.characterService.resetStorage();
+    this.characterData = JSON.parse(JSON.stringify(this.originalCharacterData));
+    this.checkForChanges();
+  }
+
+  onClear() {
+    if (window.confirm('Do you want to clear all character data?'))
+    {
+      this.characterService.resetStorage();
+    }
   }
 
 }

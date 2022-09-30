@@ -3,25 +3,36 @@
     flex-wrap: wrap;
 }
 
+.character-name {
+    font-size: 24pt;
+    font-family: 'Share';
+    font-weight: bold;
+}
+
 .character-sheet-section {
-    flex: 0 1 45%;
+    /* flex: 0 1 45%; */
     margin-top: 0.5rem;
+    border-radius: 5px;
     .character-sheet-section-title {
         border: 1px solid #000;
-        border-radius: 3px;
+        border-radius: 5px;
         padding: 3px;
         font-weight: bold;
+        font-size: 16pt;
         text-transform: uppercase;
+        background-color: #b0d9b1;
     }
 }
 
-.attribute, .skill {
+.attribute, .skill, .weapon {
     display: flex;
     gap: 0.5rem;
+    align-items: center;
 }
 
-.attribute-label, .skill-label {
+.attribute-label, .skill-label, .weapon-label {
     font-weight: 500;
+    font-size: 13pt;
 }
 
 .attribute {
@@ -36,6 +47,7 @@
 .skill {
     .skill-label {
         flex: 0 1 35%;
+        font-weight: 500;
     }
     .skill-attr {
         flex: 0 1 25%;
@@ -49,6 +61,20 @@
     }
 }
 
+.weapon {
+    .weapon-label {
+        flex: 0 1 35%;
+        font-weight: 500;
+    }
+    .weapon-score {
+        flex: 0 1 10%;
+    }
+    .weapon-damage {
+        flex: 0 1 10%;
+    }
+}
+
 .dice-icon {
     cursor: pointer;
+    color: #d6e4d7;
 }

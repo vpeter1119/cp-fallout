@@ -13,7 +13,12 @@ export class CharacterService {
 
   defaultCharacter: Character = {
     id: 0,
-    name: '',
+    general: {
+      name: '',
+      age: 0,
+      caps: 0,
+      radiation: 0
+    },
     attributes: {
         strength: 0,
         perception: 0,

@@ -3,52 +3,108 @@
         <mat-card>
             <mat-card-header style="display: flex; align-items: center; gap: 1rem;">
                 <mat-card-title>
-                    <mat-form-field class="attribute-score" appearance="fill">
-                        <mat-label>Character Name</mat-label>
-                        <input type="text" matInput placeholder="John Doe" [(ngModel)]="characterData.name" (input)="checkForChanges()">
-                    </mat-form-field>
+                    <h2 class="character-name">{{characterData.general.name || 'Unnamed Character'}}</h2>
                 </mat-card-title>
                 <span style="margin: auto;"></span>
                 <span *ngIf="dataChanged">There are unsaved changes.</span>
                 <button mat-raised-button color="primary" [disabled]="!dataChanged" (click)="onSave()">Save</button>
-                <button mat-raised-button color="primary" (click)="onReset()">Reset</button>
+                <button mat-raised-button color="primary" [disabled]="!dataChanged" (click)="onReset()">Reset</button>
+                <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
             </mat-card-header>
-            <mat-card-actions>
-            </mat-card-actions>
             <mat-card-content>
                 <div class="character-sheet-main">
-                    <!-- ATTRIBUTES -->
-                    <fieldset class="character-sheet-section character-sheet-attributes">
-                        <legend class="character-sheet-section-title">Attributes</legend>
-                        <div class="attribute" *ngFor="let attribute of attributes">
-                            <span class="attribute-label">{{attribute.display}}</span>
-                            <!-- <span class="attribute-score">{{characterData.attributes[attribute.value]}}</span> -->
-                            <mat-form-field class="attribute-score" appearance="fill">
-                                <mat-label>{{attribute.display}}</mat-label>
-                                <input type="number" matInput placeholder="{{attribute.display}}" [(ngModel)]="characterData.attributes[attribute.value]" (input)="checkForChanges()">
-                            </mat-form-field>
-                            <span class="attribute-roll">
-                                <mat-icon class="dice-icon" color="primary" (click)="onRoll(attribute.display, characterData.attributes[attribute.value])">casino</mat-icon>
-                            </span>
-                        </div>
-                    </fieldset>
-                    <!-- SKILLS -->
-                    <fieldset class="character-sheet-section character-sheet-skills">
-                        <legend class="character-sheet-section-title">Skills</legend>
-                        <div class="skill" *ngFor="let skill of skills">
-                            <span class="skill-label">{{skill.title}}</span>
-                            <span class="skill-attr">({{skill.attribute | titlecase}})</span>
-                            <!-- <span class="skill-score">{{characterData.skills[skill.id]}}</span> -->
-                            <mat-form-field class="skill-score" appearance="fill">
-                                <mat-label>{{skill.title}}</mat-label>
-                                <input type="number" matInput placeholder="{{skill.title}}" [(ngModel)]="characterData.skills[skill.id]" (input)="checkForChanges()">
-                            </mat-form-field>
-                            <span class="skill-finalscore">{{characterData.skills[skill.id] + characterData.attributes[skill.attribute]}}</span>
-                            <span class="skill-roll">
-                                <mat-icon class="dice-icon" color="primary" (click)="onRoll(skill.title, characterData.skills[skill.id] + characterData.attributes[skill.attribute])">casino</mat-icon>
-                            </span>
-                        </div>
-                    </fieldset>
+                    <div style="display: flex; flex-direction: column; flex: 0 1 45%;">
+                        <!-- SKILLS -->
+                        <fieldset class="character-sheet-section character-sheet-skills">
+                            <legend class="character-sheet-section-title">Skills</legend>
+                            <div class="skill" *ngFor="let skill of skills">
+                                <span class="skill-label">{{skill.title}}</span>
+                                <span class="skill-attr">({{skill.attribute | titlecase}})</span>
+                                <!-- <span class="skill-score">{{characterData.skills[skill.id]}}</span> -->
+                                <mat-form-field class="skill-score" appearance="fill">
+                                    <mat-label>{{skill.title}}</mat-label>
+                                    <input type="number" matInput placeholder="{{skill.title}}" [(ngModel)]="characterData.skills[skill.id]" (input)="checkForChanges()">
+                                </mat-form-field>
+                                <span class="skill-finalscore">{{characterData.skills[skill.id] + characterData.attributes[skill.attribute]}}</span>
+                                <span class="skill-roll">
+                                    <button mat-mini-fab color="primary">
+                                        <mat-icon class="dice-icon" (click)="onRoll(skill.title, characterData.skills[skill.id] + characterData.attributes[skill.attribute])">casino</mat-icon>
+                                    </button>
+                                </span>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div style="display: flex; flex-direction: column; flex: 0 1 45%;">
+                        <!-- GENERAL -->
+                        <fieldset class="character-sheet-section character-sheet-general">
+                            <legend class="character-sheet-section-title">General</legend>
+                            <div class="general-field" style="display: flex; flex-wrap: wrap; gap: 1rem;">
+                                <mat-form-field class="attribute-score" appearance="fill">
+                                    <mat-label>Name</mat-label>
+                                    <input type="text" matInput placeholder="John Doe" [(ngModel)]="characterData.general.name" (input)="checkForChanges()">
+                                </mat-form-field>
+                                <mat-form-field class="attribute-score" appearance="fill">
+                                    <mat-label>Age</mat-label>
+                                    <input type="number" matInput placeholder="John Doe" [(ngModel)]="characterData.general.age" (input)="checkForChanges()">
+                                </mat-form-field>
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Caps</mat-label>
+                                    <input type="number" matInput [(ngModel)]="characterData.general.caps" (input)="checkForChanges()">
+                                </mat-form-field>
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Radiation</mat-label>
+                                    <input type="number" matInput [(ngModel)]="characterData.general.radiation" (input)="checkForChanges()">
+                                </mat-form-field>
+                            </div>
+                        </fieldset>
+                        <!-- ATTRIBUTES -->
+                        <fieldset class="character-sheet-section character-sheet-attributes">
+                            <legend class="character-sheet-section-title">Attributes</legend>
+                            <div class="attribute" *ngFor="let attribute of attributes">
+                                <span class="attribute-label">{{attribute.display}}</span>
+                                <!-- <span class="attribute-score">{{characterData.attributes[attribute.value]}}</span> -->
+                                <mat-form-field class="attribute-score" appearance="fill">
+                                    <mat-label>{{attribute.display}}</mat-label>
+                                    <input type="number" matInput placeholder="{{attribute.display}}" [(ngModel)]="characterData.attributes[attribute.value]" (input)="checkForChanges()">
+                                </mat-form-field>
+                                <span class="attribute-roll">
+                                    <button mat-mini-fab color="primary">
+                                        <mat-icon class="dice-icon" (click)="onRoll(attribute.display, characterData.attributes[attribute.value])">casino</mat-icon>
+                                    </button>
+                                </span>
+                            </div>
+                        </fieldset>
+                        <!-- WOUNDS -->
+                        <fieldset class="character-sheet-section character-sheet-wounds">
+                            <legend class="character-sheet-section-title">Wounds</legend>
+                            <div>(WIP)</div>
+                        </fieldset>
+                        <!-- WEAPONS -->
+                        <fieldset class="character-sheet-section character-sheet-weapons">
+                            <legend class="character-sheet-section-title">Weapons</legend>
+                            <div>(WIP)</div>
+                            <!-- <div class="weapon">
+                                <span class="weapon-label">Test Weapon</span>
+                                <span class="weapon-score">12</span>
+                                <span class="weapon-damage">4d6+3</span>
+                                <button mat-mini-fab color="primary">
+                                    <mat-icon class="dice-icon" (click)="onRollDamage('Test Weapon', 4, 3)">casino</mat-icon>
+                                </button>
+                            </div> -->
+                        </fieldset>
+                        <!-- ARMOR -->
+                        <fieldset class="character-sheet-section character-sheet-armor">
+                            <legend class="character-sheet-section-title">Armor</legend>
+                            <div>(WIP)</div>
+                        </fieldset>
+                    </div>
+                    <div style="display: flex; flex-direction: column; flex: 0 1 100%;">
+                        <!-- EQUIPMENT -->
+                        <fieldset class="character-sheet-section character-sheet-equipment">
+                            <legend class="character-sheet-section-title">Equipment</legend>
+                            <div>(WIP)</div>
+                        </fieldset>
+                    </div>
                 </div>
             </mat-card-content>
         </mat-card>

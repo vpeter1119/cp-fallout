@@ -1,16 +1,18 @@
-/* export class Dice {
-    sides: number;
-    roll: function (rolls: number[] = []): number[] {
-      const roll = this.randomIntFromInterval(1, 10);
-      rolls.push(roll);
-      if (roll == 10)
+export class Dice {
+    constructor(private sides: number, private rerollOnMax = false) {
+        this.sides = sides;
+        this.rerollOnMax = rerollOnMax;
+    }
+    //sides: number;
+    //rerollOnMax: boolean;
+    roll(rolls = [], ): number[] {
+      const roll1 = Math.floor(Math.random() * this.sides + 1);
+      rolls.push(roll1);
+      if (this.rerollOnMax && roll1 == this.sides)
       {
-        this.d10.roll(rolls);
+        const roll2 = Math.floor(Math.random() * this.sides + 1);
+        rolls.push(roll2);
       }
-      else
-      {
-        return rolls;
-      }
+      return rolls;
     }
 }
- */
