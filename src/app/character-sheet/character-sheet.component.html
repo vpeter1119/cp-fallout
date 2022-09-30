@@ -1,0 +1,56 @@
+<div class="character-sheet-outer-container">
+    <div class="character-sheet-inner-container" *ngIf="!loading">
+        <mat-card>
+            <mat-card-header style="display: flex; align-items: center; gap: 1rem;">
+                <mat-card-title>
+                    <mat-form-field class="attribute-score" appearance="fill">
+                        <mat-label>Character Name</mat-label>
+                        <input type="text" matInput placeholder="John Doe" [(ngModel)]="characterData.name" (input)="checkForChanges()">
+                    </mat-form-field>
+                </mat-card-title>
+                <span style="margin: auto;"></span>
+                <span *ngIf="dataChanged">There are unsaved changes.</span>
+                <button mat-raised-button color="primary" [disabled]="!dataChanged" (click)="onSave()">Save</button>
+                <button mat-raised-button color="primary" (click)="onReset()">Reset</button>
+            </mat-card-header>
+            <mat-card-actions>
+            </mat-card-actions>
+            <mat-card-content>
+                <div class="character-sheet-main">
+                    <!-- ATTRIBUTES -->
+                    <fieldset class="character-sheet-section character-sheet-attributes">
+                        <legend class="character-sheet-section-title">Attributes</legend>
+                        <div class="attribute" *ngFor="let attribute of attributes">
+                            <span class="attribute-label">{{attribute.display}}</span>
+                            <!-- <span class="attribute-score">{{characterData.attributes[attribute.value]}}</span> -->
+                            <mat-form-field class="attribute-score" appearance="fill">
+                                <mat-label>{{attribute.display}}</mat-label>
+                                <input type="number" matInput placeholder="{{attribute.display}}" [(ngModel)]="characterData.attributes[attribute.value]" (input)="checkForChanges()">
+                            </mat-form-field>
+                            <span class="attribute-roll">
+                                <mat-icon class="dice-icon" color="primary" (click)="onRoll(attribute.display, characterData.attributes[attribute.value])">casino</mat-icon>
+                            </span>
+                        </div>
+                    </fieldset>
+                    <!-- SKILLS -->
+                    <fieldset class="character-sheet-section character-sheet-skills">
+                        <legend class="character-sheet-section-title">Skills</legend>
+                        <div class="skill" *ngFor="let skill of skills">
+                            <span class="skill-label">{{skill.title}}</span>
+                            <span class="skill-attr">({{skill.attribute | titlecase}})</span>
+                            <!-- <span class="skill-score">{{characterData.skills[skill.id]}}</span> -->
+                            <mat-form-field class="skill-score" appearance="fill">
+                                <mat-label>{{skill.title}}</mat-label>
+                                <input type="number" matInput placeholder="{{skill.title}}" [(ngModel)]="characterData.skills[skill.id]" (input)="checkForChanges()">
+                            </mat-form-field>
+                            <span class="skill-finalscore">{{characterData.skills[skill.id] + characterData.attributes[skill.attribute]}}</span>
+                            <span class="skill-roll">
+                                <mat-icon class="dice-icon" color="primary" (click)="onRoll(skill.title, characterData.skills[skill.id] + characterData.attributes[skill.attribute])">casino</mat-icon>
+                            </span>
+                        </div>
+                    </fieldset>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
