@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Character } from '../character';
-import { CharacterService } from '../character.service';
-import { DiceService } from '../dice.service';
-import { Skill } from '../skill';
+import { Character } from '../models/character';
+import { CharacterService } from '../common/character.service';
+import { DiceService } from '../common/dice.service';
+import { Skill } from '../models/skill';
 
 @Component({
   selector: 'app-character-sheet',
