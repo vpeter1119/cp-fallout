@@ -1,0 +1,26 @@
+[
+    {
+        "ID": 0,
+        "name": "5 mm pisztoly",
+        "skillIndex": 6,
+        "accuracy": -1,
+        "damage": "1d6",
+        "shots": 8,
+        "rateOfFire": 2,
+        "reliability": 0,
+        "range": "50 m",
+        "price": 75
+    },
+    {
+        "ID": 1,
+        "name": "6 mm pisztoly",
+        "skillIndex": 6,
+        "accuracy": -1,
+        "damage": "1d6+1",
+        "shots": 10,
+        "rateOfFire": 2,
+        "reliability": -1,
+        "range": "50 m",
+        "price": 50
+    }
+]

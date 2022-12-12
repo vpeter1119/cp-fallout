@@ -30,7 +30,8 @@ export class CharacterService {
     },    
     skills: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     wounds: 0,
-    armors: []
+    armors: [],
+    weapons: []
   }
 
   attributes = [

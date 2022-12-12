@@ -1,4 +1,5 @@
 import { CharacterArmor } from "./armor";
+import { CharacterWeapon } from "./weapon";
 
 export class Character {
     id: number;
@@ -20,4 +21,5 @@ export class Character {
     skills: number[];
     wounds: number;
     armors: CharacterArmor[];
+    weapons: CharacterWeapon[];
 }

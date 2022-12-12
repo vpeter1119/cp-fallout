@@ -96,18 +96,57 @@
                                 </div>
                             </div>
                         </fieldset>
+                    </div>
+                    <div style="display: flex; flex-direction: column; flex: 0 1 100%;">
                         <!-- WEAPONS -->
                         <fieldset class="character-sheet-section character-sheet-weapons">
                             <legend class="character-sheet-section-title">Weapons</legend>
-                            <div>(WIP)</div>
-                            <!-- <div class="weapon">
-                                <span class="weapon-label">Test Weapon</span>
-                                <span class="weapon-score">12</span>
-                                <span class="weapon-damage">4d6+3</span>
-                                <button mat-mini-fab color="primary">
-                                    <mat-icon class="dice-icon" (click)="onRollDamage('Test Weapon', 4, 3)">casino</mat-icon>
-                                </button>
-                            </div> -->
+                            <div class="weapons-table">
+                                <div class="weapons-row" *ngIf="characterData.weapons.length">
+                                    <span class="weapon-value"></span>
+                                    <span class="weapon-name">Fegyver</span>
+                                    <span class="weapon-value">Dobás</span>
+                                    <span class="weapon-value">Skill</span>
+                                    <span class="weapon-value">Pont.</span>
+                                    <span class="weapon-value">Seb.</span>
+                                    <span class="weapon-value">L.sz.</span>
+                                    <span class="weapon-value">TGY</span>
+                                    <span class="weapon-value">Megb.</span>
+                                    <span class="weapon-value">Táv.</span>
+                                </div>
+                                <hr *ngIf="characterData.weapons.length">
+                                <div class="weapons-row" *ngFor="let weapon of characterData.weapons; let i = index">
+                                    <span class="weapon-name">{{weapon.name}}</span>
+                                    <!-- {{characterData.skills[skills[weapon.skillIndex].id] + characterData.attributes[skills[weapon.skillIndex].attribute] + weapon.accuracy}} -->
+                                    <span class="weapon-value">
+                                        <button mat-raised-button color="primary" (click)="onRoll(weapon.name, characterData.skills[skills[weapon.skillIndex].id] + characterData.attributes[skills[weapon.skillIndex].attribute] + weapon.accuracy)">
+                                            {{characterData.skills[skills[weapon.skillIndex].id] + characterData.attributes[skills[weapon.skillIndex].attribute] + weapon.accuracy}}
+                                        </button>
+                                    </span>
+                                    <span class="weapon-value">{{skills[weapon.skillIndex].title}}</span>
+                                    <span class="weapon-value">{{weapon.accuracy}}</span>
+                                    <span class="weapon-value">
+                                        <button mat-raised-button color="primary" (click)="onRollDamageFromString(weapon.name + ' sebzése', weapon.damage)">
+                                            {{weapon.damage}}
+                                        </button>
+                                    </span>
+                                    <span class="weapon-value">{{weapon.shots || 'N/A'}}</span>
+                                    <span class="weapon-value">{{weapon.rateofFire || 'N/A'}}</span>
+                                    <span class="weapon-value">{{weapon.reliability || 'N/A'}}</span>
+                                    <span class="weapon-value">{{weapon.range}}</span>
+                                    <span class="weapon-remove"><mat-icon color="warn" (click)="onWeaponDelete(index)">delete</mat-icon></span>
+                                </div>                                
+                                <div class="weapons-row weapon-add">
+                                    <mat-form-field appearance="fill">
+                                        <mat-label>Add new weapon</mat-label>
+                                        <mat-select id="weaponSelect" [(ngModel)]="selection.weapon" (selectionChange)="onWeaponSelect($event)">
+                                            <mat-option *ngFor="let weapon of weapons" [value]="weapon">
+                                                {{weapon.name}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
                         </fieldset>
                     </div>
                     <div style="display: flex; flex-direction: column; flex: 0 1 100%;">

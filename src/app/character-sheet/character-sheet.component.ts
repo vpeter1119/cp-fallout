@@ -8,6 +8,7 @@ import { MatCheckboxChange } from '@angular/material/checkbox';
 import { ItemService } from '../common/item.service';
 import { Armor, CharacterArmor } from '../models/armor';
 import { MatSelect, MatSelectChange } from '@angular/material/select';
+import { CharacterWeapon, Weapon } from '../models/weapon';
 
 @Component({
   selector: 'app-character-sheet',
@@ -24,6 +25,7 @@ export class CharacterSheetComponent implements OnInit {
   dataChanged = false;
 
   armors: Armor[] = [];
+  weapons: Weapon[] = [];
   selection: any = {};
 
   constructor(
@@ -44,6 +46,9 @@ export class CharacterSheetComponent implements OnInit {
     this.itemService.armors$.subscribe((armors) => {
       this.armors = armors;
     })
+    this.itemService.weapons$.subscribe((weapons) => {
+      this.weapons = weapons;
+    })
   }
 
   onRoll(label: string, modifier: number) {
@@ -51,9 +56,16 @@ export class CharacterSheetComponent implements OnInit {
     this.displayRollResult(label, roll);
   }
 
-  onRollDamage(label: string, dice: number, modifier: number) {
-    const roll = this._dice.rollDamage(dice, modifier);
+  onRollDamage(label: string, dice: number, type: number, modifier: number) {
+    const roll = this._dice.rollDamage(dice, type, modifier);
     this.displayRollResult(label, roll);
+  }
+
+  onRollDamageFromString(label: string, damageString: string) {
+    let dmgArray1 = damageString.indexOf('+') > -1 ? damageString.split('+') : (damageString.indexOf('-') > -1 ? damageString.split('+') : [damageString]);
+    let dmgArray2 = dmgArray1[0].split('d');
+    console.warn(parseInt(dmgArray2[0]), 'd', parseInt(dmgArray2[1]), parseInt(dmgArray1[1]));
+    this.onRollDamage(label, parseInt(dmgArray2[0]), parseInt(dmgArray2[1]), dmgArray1.length > 1 ? parseInt(dmgArray1[1]) : 0);
   }
 
   onRollWounds(modifier: number) {
@@ -102,6 +114,14 @@ export class CharacterSheetComponent implements OnInit {
     this.checkForChanges();
   }
 
+  onWeaponSelect(event: MatSelectChange) {
+    let newWeapon: CharacterWeapon = Object.assign({}, event.value);
+    // newArmor.currentArmor = Object.assign({}, newArmor.armor);
+    this.characterData.weapons.push(newWeapon);
+    this.selection.weapon = null;
+    this.checkForChanges();
+  }
+
   onArmorEdit(event: FocusEvent, index: number, field: string) {
     let el = event.currentTarget as HTMLElement;
     var newValue = el.innerText;
@@ -121,6 +141,18 @@ export class CharacterSheetComponent implements OnInit {
     this.characterData.armors.splice(index, 1);
     this.selection.armor = null;
     this.checkForChanges();
+  }
+
+  onWeaponDelete(index) {
+    this.characterData.weapons.splice(index, 1);
+    this.selection.weapon = null;
+    this.checkForChanges();
+  }
+
+  onRollWeapon(weapon: any) {
+    const label = weapon.name;
+    const modifier = this.characterData.skills[this.skills[weapon.skillIndex].id] + this.characterData.attributes[this.skills[weapon.skillIndex].attribute] + weapon.accuracy;
+    this.onRoll(label, modifier);
   }
 
 }
