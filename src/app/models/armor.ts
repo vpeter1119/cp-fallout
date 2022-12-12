@@ -9,6 +9,7 @@ export interface Armor {
         leg_left: number,
         leg_right: number
     };
+    aev: number;
     price: number;
 }
 

@@ -25,10 +25,10 @@
                                     <mat-label>{{skill.title}}</mat-label>
                                     <input type="number" matInput placeholder="{{skill.title}}" [(ngModel)]="characterData.skills[skill.id]" (input)="checkForChanges()">
                                 </mat-form-field>
-                                <span class="skill-finalscore">{{characterData.skills[skill.id] + characterData.attributes[skill.attribute]}}</span>
+                                <span class="skill-finalscore">{{characterData.skills[skill.id] + characterData.attributes[skill.attribute] - (skill.attribute == 'agility' ? totals.aev : 0)}}</span>
                                 <span class="skill-roll">
                                     <button mat-mini-fab color="primary">
-                                        <mat-icon class="dice-icon" (click)="onRoll(skill.title, characterData.skills[skill.id] + characterData.attributes[skill.attribute])">casino</mat-icon>
+                                        <mat-icon class="dice-icon" (click)="onRoll(skill.title, characterData.skills[skill.id] + characterData.attributes[skill.attribute] - (skill.attribute == 'agility' ? totals.aev : 0))">casino</mat-icon>
                                     </button>
                                 </span>
                             </div>
@@ -53,7 +53,14 @@
                                 </mat-form-field>
                                 <mat-form-field appearance="fill">
                                     <mat-label>Radiation</mat-label>
+                                    <!-- <mat-slider matInput [max]="100" [min]="1" [step]="1" [discrete]="thumbLabel" [showTickMarks]="showTicks">
+                                        <input matSliderThumb [(ngModel)]="characterData.general.radiation">
+                                    </mat-slider> -->
                                     <input type="number" matInput [(ngModel)]="characterData.general.radiation" (input)="checkForChanges()">
+                                </mat-form-field>
+                                <mat-form-field appearance="fill">
+                                    <mat-label>MGÉ</mat-label>
+                                    <input type="number" matInput [(ngModel)]="totals.aev" disabled>
                                 </mat-form-field>
                             </div>
                         </fieldset>

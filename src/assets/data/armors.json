@@ -10,6 +10,7 @@
             "leg_left": 0,
             "leg_right": 0
         },
+        "aev": 0,
         "price": 20
     },
     {
@@ -23,6 +24,203 @@
             "leg_left": 4,
             "leg_right": 4
         },
+        "aev": 0,
         "price": 50
+    },
+    {
+        "ID": 2,
+        "name": "Vault uniformis",
+        "armor": {
+            "head": 0,
+            "torso": 5,
+            "arm_left": 5,
+            "arm_right": 5,
+            "leg_left": 5,
+            "leg_right": 5
+        },
+        "aev": 0,
+        "price": 75
+    },
+    {
+        "ID": 3,
+        "name": "Kevlar mellény",
+        "armor": {
+            "head": 0,
+            "torso": 10,
+            "arm_left": 0,
+            "arm_right": 0,
+            "leg_left": 0,
+            "leg_right": 0
+        },
+        "aev": 0,
+        "price": 90
+    },
+    {
+        "ID": 4,
+        "name": "Sugárzás elleni páncél",
+        "armor": {
+            "head": 10,
+            "torso": 10,
+            "arm_left": 10,
+            "arm_right": 10,
+            "leg_left": 10,
+            "leg_right": 10
+        },
+        "aev": 1,
+        "price": 90
+    },
+    {
+        "ID": 5,
+        "name": "Acélsisak",
+        "armor": {
+            "head": 14,
+            "torso": 0,
+            "arm_left": 0,
+            "arm_right": 0,
+            "leg_left": 0,
+            "leg_right": 0
+        },
+        "aev": 0,
+        "price": 20
+    },
+    {
+        "ID": 6,
+        "name": "Könnyű Páncéldzseki",
+        "armor": {
+            "head": 0,
+            "torso": 14,
+            "arm_left": 14,
+            "arm_right": 14,
+            "leg_left": 0,
+            "leg_right": 0
+        },
+        "aev": 0,
+        "price": 150
+    },
+    {
+        "ID": 7,
+        "name": "Köz. Páncéldzseki",
+        "armor": {
+            "head": 0,
+            "torso": 18,
+            "arm_left": 18,
+            "arm_right": 18,
+            "leg_left": 0,
+            "leg_right": 0
+        },
+        "aev": 1,
+        "price": 200
+    },
+    {
+        "ID": 8,
+        "name": "Flak mellény",
+        "armor": {
+            "head": 0,
+            "torso": 20,
+            "arm_left": 0,
+            "arm_right": 0,
+            "leg_left": 0,
+            "leg_right": 0
+        },
+        "aev": 1,
+        "price": 200
+    },
+    {
+        "ID": 9,
+        "name": "Flak nadrág",
+        "armor": {
+            "head": 0,
+            "torso": 0,
+            "arm_left": 0,
+            "arm_right": 0,
+            "leg_left": 20,
+            "leg_right": 20
+        },
+        "aev": 1,
+        "price": 200
+    },
+    {
+        "ID": 10,
+        "name": "Biztonsági sisak",
+        "armor": {
+            "head": 20,
+            "torso": 0,
+            "arm_left": 0,
+            "arm_right": 0,
+            "leg_left": 0,
+            "leg_right": 0
+        },
+        "aev": 0,
+        "price": 100
+    },
+    {
+        "ID": 11,
+        "name": "Nehéz Páncéldzseki",
+        "armor": {
+            "head": 0,
+            "torso": 20,
+            "arm_left": 20,
+            "arm_right": 20,
+            "leg_left": 0,
+            "leg_right": 0
+        },
+        "aev": 2,
+        "price": 250
+    },
+    {
+        "ID": 12,
+        "name": "Nehéz Lövészmellény",
+        "armor": {
+            "head": 0,
+            "torso": 25,
+            "arm_left": 0,
+            "arm_right": 0,
+            "leg_left": 0,
+            "leg_right": 0
+        },
+        "aev": 3,
+        "price": 250
+    },
+    {
+        "ID": 13,
+        "name": "MetalGear",
+        "armor": {
+            "head": 25,
+            "torso": 25,
+            "arm_left": 25,
+            "arm_right": 25,
+            "leg_left": 25,
+            "leg_right": 25
+        },
+        "aev": 2,
+        "price": 600
+    },
+    {
+        "ID": 14,
+        "name": "Tesla Armor",
+        "armor": {
+            "head": 25,
+            "torso": 25,
+            "arm_left": 25,
+            "arm_right": 25,
+            "leg_left": 25,
+            "leg_right": 25
+        },
+        "aev": 2,
+        "price": 800
+    },
+    {
+        "ID": 15,
+        "name": "Power Armor",
+        "armor": {
+            "head": 30,
+            "torso": 30,
+            "arm_left": 30,
+            "arm_right": 30,
+            "leg_left": 30,
+            "leg_right": 30
+        },
+        "aev": 3,
+        "price": 1000
     }
 ]

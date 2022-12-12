@@ -27,6 +27,9 @@ export class CharacterSheetComponent implements OnInit {
   armors: Armor[] = [];
   weapons: Weapon[] = [];
   selection: any = {};
+  totals = {
+    aev: 0
+  };
 
   constructor(
     private characterService: CharacterService,
@@ -112,6 +115,7 @@ export class CharacterSheetComponent implements OnInit {
     this.characterData.armors.push(newArmor);
     this.selection.armor = null;
     this.checkForChanges();
+    this.getEncTotal();
   }
 
   onWeaponSelect(event: MatSelectChange) {
@@ -135,12 +139,14 @@ export class CharacterSheetComponent implements OnInit {
       this.characterData.armors[index][field] = newValue;
     }
     this.characterService.saveCharacter(this.characterData);
+    this.getEncTotal();
   }
 
   onArmorDelete(index) {
     this.characterData.armors.splice(index, 1);
     this.selection.armor = null;
     this.checkForChanges();
+    this.getEncTotal();
   }
 
   onWeaponDelete(index) {
@@ -155,4 +161,12 @@ export class CharacterSheetComponent implements OnInit {
     this.onRoll(label, modifier);
   }
 
+  getEncTotal(): number {
+    let sum = 0;
+    this.characterData.armors.forEach((armor) => {
+      sum += armor.aev;
+    })
+    this.totals.aev = sum;
+    return sum;
+  }
 }
