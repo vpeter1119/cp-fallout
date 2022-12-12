@@ -126,8 +126,8 @@
                                     <span class="weapon-name">{{weapon.name}}</span>
                                     <!-- {{characterData.skills[skills[weapon.skillIndex].id] + characterData.attributes[skills[weapon.skillIndex].attribute] + weapon.accuracy}} -->
                                     <span class="weapon-value">
-                                        <button mat-raised-button color="primary" (click)="onRoll(weapon.name, characterData.skills[skills[weapon.skillIndex].id] + characterData.attributes[skills[weapon.skillIndex].attribute] + weapon.accuracy)">
-                                            {{characterData.skills[skills[weapon.skillIndex].id] + characterData.attributes[skills[weapon.skillIndex].attribute] + weapon.accuracy}}
+                                        <button mat-raised-button color="primary" (click)="onRoll(weapon.name, characterData.skills[skills[weapon.skillIndex].id] + characterData.attributes[skills[weapon.skillIndex].attribute] + weapon.accuracy - totals.aev)">
+                                            {{characterData.skills[skills[weapon.skillIndex].id] + characterData.attributes[skills[weapon.skillIndex].attribute] + weapon.accuracy - totals.aev}}
                                         </button>
                                     </span>
                                     <span class="weapon-value">{{skills[weapon.skillIndex].title}}</span>
