@@ -29,7 +29,8 @@ export class CharacterService {
         luck: 0
     },    
     skills: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    wounds: 0
+    wounds: 0,
+    armors: []
   }
 
   attributes = [

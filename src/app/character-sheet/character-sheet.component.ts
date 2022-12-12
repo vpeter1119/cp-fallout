@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Character } from '../models/character';
 import { CharacterService } from '../common/character.service';
 import { DiceService } from '../common/dice.service';
 import { Skill } from '../models/skill';
 import { MatCheckboxChange } from '@angular/material/checkbox';
+import { ItemService } from '../common/item.service';
+import { Armor, CharacterArmor } from '../models/armor';
+import { MatSelect, MatSelectChange } from '@angular/material/select';
 
 @Component({
   selector: 'app-character-sheet',
@@ -20,10 +23,14 @@ export class CharacterSheetComponent implements OnInit {
   attributes;
   dataChanged = false;
 
+  armors: Armor[] = [];
+  selection: any = {};
+
   constructor(
     private characterService: CharacterService,
     private _dice: DiceService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private itemService: ItemService
   ) { }
 
   ngOnInit(): void {
@@ -34,6 +41,9 @@ export class CharacterSheetComponent implements OnInit {
     this.skills = this.characterService.getSkills();
     console.log(this.characterData, this.attributes, this.skills);
     this.loading = false;
+    this.itemService.armors$.subscribe((armors) => {
+      this.armors = armors;
+    })
   }
 
   onRoll(label: string, modifier: number) {
@@ -82,6 +92,35 @@ export class CharacterSheetComponent implements OnInit {
     if (event) event.source.checked = true;
     this.characterData.wounds = wounds;
     this.characterService.saveCharacter(this.characterData);
+  }
+
+  onArmorSelect(event: MatSelectChange) {
+    let newArmor: CharacterArmor = Object.assign({}, event.value);
+    newArmor.currentArmor = Object.assign({}, newArmor.armor);
+    this.characterData.armors.push(newArmor);
+    this.selection.armor = null;
+    this.checkForChanges();
+  }
+
+  onArmorEdit(event: FocusEvent, index: number, field: string) {
+    let el = event.currentTarget as HTMLElement;
+    var newValue = el.innerText;
+    if (field.indexOf('.') > -1)
+    {
+      const fieldPath = field.split('.');
+      this.characterData.armors[index][fieldPath[0]][fieldPath[1]] = newValue;
+    }
+    else
+    {
+      this.characterData.armors[index][field] = newValue;
+    }
+    this.characterService.saveCharacter(this.characterData);
+  }
+
+  onArmorDelete(index) {
+    this.characterData.armors.splice(index, 1);
+    this.selection.armor = null;
+    this.checkForChanges();
   }
 
 }

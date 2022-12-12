@@ -30,7 +30,7 @@
     align-items: center;
 }
 
-.attribute-label, .skill-label, .weapon-label, .wounds-label, .wounds-info {
+.attribute-label, .skill-label, .weapon-label, .wounds-label, .wounds-info, .armor-name {
     font-weight: 500;
     font-size: 13pt;
 }
@@ -86,6 +86,22 @@
     }
     .wounds-cb {
         flex: 0 1 10%;
+    }
+}
+
+.armors-row {
+    display: flex;
+    align-items: center;
+    .armor-name {
+        flex: 0 1 30%;
+        max-width: 30%;
+    }
+    .armor-value {
+        flex: 0 1 10%;
+        max-width: 10%;
+    }
+    .armor-remove {
+        cursor: pointer;
     }
 }
 

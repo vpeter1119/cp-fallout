@@ -1,3 +1,5 @@
+import { CharacterArmor } from "./armor";
+
 export class Character {
     id: number;
     general: {
@@ -17,4 +19,5 @@ export class Character {
     };
     skills: number[];
     wounds: number;
+    armors: CharacterArmor[];
 }

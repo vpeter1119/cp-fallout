@@ -109,10 +109,43 @@
                                 </button>
                             </div> -->
                         </fieldset>
+                    </div>
+                    <div style="display: flex; flex-direction: column; flex: 0 1 100%;">
                         <!-- ARMOR -->
                         <fieldset class="character-sheet-section character-sheet-armor">
                             <legend class="character-sheet-section-title">Armor</legend>
-                            <div>(WIP)</div>
+                            <div class="armors-table">
+                                <div class="armors-row" *ngIf="characterData.armors.length">
+                                    <span class="armor-name">Páncél</span>
+                                    <span class="armor-value">Fej</span>
+                                    <span class="armor-value">Törzs</span>
+                                    <span class="armor-value">Jobb kéz</span>
+                                    <span class="armor-value">Bal kéz</span>
+                                    <span class="armor-value">Jobb láb</span>
+                                    <span class="armor-value">Bal láb</span>
+                                </div>
+                                <hr *ngIf="characterData.armors.length">
+                                <div class="armors-row" *ngFor="let armor of characterData.armors; let i = index">
+                                    <span class="armor-name" contenteditable="true" [textContent]="armor.name" (blur)="onArmorEdit($event, i, 'name')">{{armor.name}}</span>
+                                    <span class="armor-value" contenteditable="true" [textContent]="armor.currentArmor.head" (blur)="onArmorEdit($event, i, 'currentArmor.head')">{{armor.currentArmor.head}}</span>
+                                    <span class="armor-value" contenteditable="true" [textContent]="armor.currentArmor.torso" (blur)="onArmorEdit($event, i, 'currentArmor.torso')">{{armor.currentArmor.torso}}</span>
+                                    <span class="armor-value" contenteditable="true" [textContent]="armor.currentArmor.arm_right" (blur)="onArmorEdit($event, i, 'currentArmor.arm_right')">{{armor.currentArmor.arm_right}}</span>
+                                    <span class="armor-value" contenteditable="true" [textContent]="armor.currentArmor.arm_left" (blur)="onArmorEdit($event, i, 'currentArmor.arm_left')">{{armor.currentArmor.arm_left}}</span>
+                                    <span class="armor-value" contenteditable="true" [textContent]="armor.currentArmor.leg_right" (blur)="onArmorEdit($event, i, 'currentArmor.leg_right')">{{armor.currentArmor.leg_right}}</span>
+                                    <span class="armor-value" contenteditable="true" [textContent]="armor.currentArmor.leg_left" (blur)="onArmorEdit($event, i, 'currentArmor.leg_left')">{{armor.currentArmor.leg_left}}</span>
+                                    <span class="armor-remove"><mat-icon color="warn" (click)="onArmorDelete(index)">delete</mat-icon></span>
+                                </div>                                
+                                <div class="armors-row armor-add">
+                                    <mat-form-field appearance="fill">
+                                        <mat-label>Add new armor</mat-label>
+                                        <mat-select id="armorSelect" [(ngModel)]="selection.armor" (selectionChange)="onArmorSelect($event)">
+                                            <mat-option *ngFor="let armor of armors" [value]="armor">
+                                                {{armor.name}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
                         </fieldset>
                     </div>
                     <div style="display: flex; flex-direction: column; flex: 0 1 100%;">
