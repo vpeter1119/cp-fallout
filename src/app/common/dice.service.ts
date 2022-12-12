@@ -19,7 +19,6 @@ export class DiceService {
     let natRolls = this.d10.roll();
     let sum = natRolls.reduce((partialSum, a) => partialSum + a, 0);
     sum += modifier;
-    console.warn(natRolls);
     return `[${natRolls.join(' + ')}] ${modifier >= 0 ? '+' : '-'} ${Math.abs(modifier)} = ${sum}`;
   }
 
@@ -30,7 +29,14 @@ export class DiceService {
     }
     let sum = natRolls.reduce((partialSum, a) => partialSum + a, 0);
     sum += modifier;
-    console.warn(natRolls);
     return `[${natRolls.join(' + ')}] ${modifier >= 0 ? '+' : '-'} ${Math.abs(modifier)} = ${sum}`;
   }
+
+  rollWounds(modifier: number = 0, target: number) {
+    let natRolls = this.d10.roll();
+    let sum = natRolls.reduce((partialSum, a) => partialSum + a, 0);
+    sum += modifier;
+    return `[${natRolls.join(' + ')}] ${modifier >= 0 ? '+' : '-'} ${Math.abs(modifier)} = ${sum} ${sum <= target ? '<' : '>'} ${target} → ${sum <= target ? 'SUCCESS' : 'FAILURE'}`;
+  }
+
 }

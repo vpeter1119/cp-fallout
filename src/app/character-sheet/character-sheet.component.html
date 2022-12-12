@@ -89,7 +89,7 @@
                                         <mat-checkbox [checked]="characterData.wounds >= ((index1 * 5) + index2)" (change)="markWounds($event, (index1 * 5) + index2)"></mat-checkbox>
                                     </span>
                                     <span class="wound-roll">
-                                        <button mat-mini-fab color="primary" [disabled]="!characterData.wounds || ((characterData.wounds / 5) < index1 || (characterData.wounds / 5) > index1+1)" (click)="onRoll('Ájulás', 0-index1)">
+                                        <button mat-mini-fab color="primary" [disabled]="!characterData.wounds || ((characterData.wounds / 5) < index1 || (characterData.wounds / 5) > index1+1)" (click)="onRollWounds(index1)">
                                             <mat-icon class="dice-icon">casino</mat-icon>
                                         </button>
                                     </span>

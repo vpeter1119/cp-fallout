@@ -46,6 +46,11 @@ export class CharacterSheetComponent implements OnInit {
     this.displayRollResult(label, roll);
   }
 
+  onRollWounds(modifier: number) {
+    const roll = this._dice.rollWounds(modifier, this.characterData.attributes.endurance);
+    this.displayRollResult('Ájulás mentő', roll);
+  }
+
   displayRollResult(label: string, result: string) {
     this._snackBar.open(`Roll result for ${label}: ${result}`, 'Close');
   }
