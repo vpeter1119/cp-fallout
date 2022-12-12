@@ -24,13 +24,13 @@
     }
 }
 
-.attribute, .skill, .weapon {
+.attribute, .skill, .weapon, .wounds-row {
     display: flex;
     gap: 0.5rem;
     align-items: center;
 }
 
-.attribute-label, .skill-label, .weapon-label {
+.attribute-label, .skill-label, .weapon-label, .wounds-label, .wounds-info {
     font-weight: 500;
     font-size: 13pt;
 }
@@ -74,7 +74,26 @@
     }
 }
 
+.wounds-info {
+    display: flex;
+    align-items: center;  
+}
+
+.wounds-row {
+    margin-top: 0.5rem;
+    .wounds-label {
+        flex: 0 1 30%;
+    }
+    .wounds-cb {
+        flex: 0 1 10%;
+    }
+}
+
 .dice-icon {
     cursor: pointer;
     color: #d6e4d7;
+}
+
+.spacer {
+    margin: auto;
 }

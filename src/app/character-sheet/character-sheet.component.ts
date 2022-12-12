@@ -4,6 +4,7 @@ import { Character } from '../models/character';
 import { CharacterService } from '../common/character.service';
 import { DiceService } from '../common/dice.service';
 import { Skill } from '../models/skill';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-character-sheet',
@@ -70,6 +71,12 @@ export class CharacterSheetComponent implements OnInit {
     {
       this.characterService.resetStorage();
     }
+  }
+
+  markWounds(event: MatCheckboxChange, wounds: number) {
+    if (event) event.source.checked = true;
+    this.characterData.wounds = wounds;
+    this.characterService.saveCharacter(this.characterData);
   }
 
 }

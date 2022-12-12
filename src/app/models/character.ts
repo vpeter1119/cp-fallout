@@ -15,5 +15,6 @@ export class Character {
         agility: number,
         luck: number
     };
-    skills: number[]
+    skills: number[];
+    wounds: number;
 }

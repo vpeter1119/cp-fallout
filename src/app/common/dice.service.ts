@@ -20,7 +20,7 @@ export class DiceService {
     let sum = natRolls.reduce((partialSum, a) => partialSum + a, 0);
     sum += modifier;
     console.warn(natRolls);
-    return `[${natRolls.join(' + ')}] + ${modifier} = ${sum}`;
+    return `[${natRolls.join(' + ')}] ${modifier >= 0 ? '+' : '-'} ${Math.abs(modifier)} = ${sum}`;
   }
 
   rollDamage(dice: number, modifier: number = 0): string {
@@ -31,6 +31,6 @@ export class DiceService {
     let sum = natRolls.reduce((partialSum, a) => partialSum + a, 0);
     sum += modifier;
     console.warn(natRolls);
-    return `[${natRolls.join(' + ')}] + ${modifier} = ${sum}`;
+    return `[${natRolls.join(' + ')}] ${modifier >= 0 ? '+' : '-'} ${Math.abs(modifier)} = ${sum}`;
   }
 }

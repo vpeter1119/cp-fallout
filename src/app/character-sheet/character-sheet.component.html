@@ -77,7 +77,24 @@
                         <!-- WOUNDS -->
                         <fieldset class="character-sheet-section character-sheet-wounds">
                             <legend class="character-sheet-section-title">Wounds</legend>
-                            <div>(WIP)</div>
+                            <div class="wounds-info">
+                                <span>Sebek: {{characterData.wounds}}</span>
+                                <span class="spacer"></span>
+                                <button mat-raised-button color="primary" [disabled]="!characterData.wounds" (click)="markWounds(null, 0)">Clear</button>
+                            </div>
+                            <div class="wounds-table">
+                                <div class="wounds-row" *ngFor="let index1 of [0,1,2,3,4,5,6,7]">
+                                    <span class="wounds-label">Ájulás mentő {{index1 == 0 ? '' : '-' + index1}}</span>
+                                    <span class="wounds-cb" *ngFor="let index2 of [1,2,3,4,5]">
+                                        <mat-checkbox [checked]="characterData.wounds >= ((index1 * 5) + index2)" (change)="markWounds($event, (index1 * 5) + index2)"></mat-checkbox>
+                                    </span>
+                                    <span class="wound-roll">
+                                        <button mat-mini-fab color="primary">
+                                            <mat-icon class="dice-icon" (click)="onRoll('Ájulás', 0-index1)">casino</mat-icon>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
                         </fieldset>
                         <!-- WEAPONS -->
                         <fieldset class="character-sheet-section character-sheet-weapons">
